@@ -1,22 +1,24 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import Button from "../../ui/Button";
 import { useFetcher } from "react-router-dom";
 import { updateOrder } from "../../services/apiRestaurant";
 
-export default function UpdateOrder({ order }) {
+function UpdateOrder() {
   const fetcher = useFetcher();
 
   return (
     <fetcher.Form method="PATCH" className="text-right">
-      <Button type="primary">Make Priority</Button>
+      <Button type="primary">Make priority</Button>
     </fetcher.Form>
   );
 }
 
-export async function action({ requset, params }) {
-  const data = { priority: true };
-  await updateOrder(params.orderId, data);
+export default UpdateOrder;
+
+export async function action({ params }) {
+  const updateData = {
+    priority: true,
+  };
+  await updateOrder(params.orderId, updateData);
   return null;
 }
